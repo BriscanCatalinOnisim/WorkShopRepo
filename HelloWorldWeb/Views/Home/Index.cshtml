@@ -1,4 +1,6 @@
-﻿@{
+﻿@model HelloWorldWeb.Models.TeamInfo
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -9,11 +11,15 @@
 <div class="text-center">
     <h1 class="display-4">Our Team</h1>
     <ul id="list">
-        <li>Gabriel</li>
-        <li>Delia</li>
-        <li>Sorina</li>
-        <li>Rares</li>
-        <li>Catalin</li>
+
+        @for (var i = 0; i < Model.TeamMembers.Count; i++)
+        {
+            var member = Model.TeamMembers[i];
+
+            <li class="member">
+                @member
+            </li>
+        }
     </ul>
     <input type="text" id="nameField" title="e.g. Radu" />
     <button type="submit" id="createButton" title="Create">Create</button>

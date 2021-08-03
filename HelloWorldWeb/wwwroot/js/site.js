@@ -12,10 +12,6 @@ $(document).ready(function () {
         // Remember string interpolation
         $("#list").append(`<li>${newcomerName}</li>`);
 
-
-
-
-
         $("#nameField").val("");
     })
 });

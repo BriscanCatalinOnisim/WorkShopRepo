@@ -1,40 +1,63 @@
-﻿// This JS file now uses jQuery. Pls see here: https://jquery.com/
-$(document).ready(function () {
+﻿$(document).ready(function () {
+
     $("#createButton").click(function () {
         var newcomerName = $("#nameField").val();
-
+        var length = $("#teamMembers").children().length;
         $.ajax({
             method: "POST",
             url: "/Home/AddTeamMember",
-            data: { "name": newcomerName },
-            success: function (result) {
+            data: {
+                "name": newcomerName
+            },
+            success: (result) => {
                 console.log(result);
-                $("#list").append(`<li>${newcomerName}</li>`);
+                $("#teamList").append(
+                    `<li>
+                <span class="memberName">
+                        ${newcomerName}
+                    </span >
+                <span class="delete fa fa-remove" onclick="deleteMember(${result})">
+                    </span>
+                <span class="edit fa fa-pencil">
+                    </span>
+                </li>`);
                 $("#nameField").val("");
+                document.getElementById("createButton").disabled = true;
             },
             error: function (err) {
                 console.log(err);
             }
         })
-    })
 
-    $("#deleteField").click(function () {
-        var newcomerName = $("#memberField").val();
+    });
 
-        $.ajax({
-            method: "POST",
-            url: "/Home/DeleteTeamMember",
-            data: { "name": newcomerName },
-            success: function (result) {
-                console.log(result);
-                $("#list").remove(`<li>${newcomerName}</li>`);
-                $("#memberField").val("");
-            },
-            error: function (err) {
-                console.log(err);
-            }
-        })
-    })
-
+    $("#clearButton").click(function ClearFields() {
+        document.getElementById("nameField").value = "";
+    });
 
 });
+
+function deleteMember(index) {
+
+    $.ajax({
+        url: "/Home/RemoveMember",
+        method: "DELETE",
+        data: {
+            memberIndex: index
+        },
+        success: function (result) {
+            location.reload();
+        }
+    })
+}
+
+(function () {
+    $('#nameField').on('change textInput input', function () {
+        var inputVal = this.value;
+        if (inputVal != "") {
+            document.getElementById("createButton").disabled = false;
+        } else {
+            document.getElementById("createButton").disabled = true;
+        }
+    });
+}());

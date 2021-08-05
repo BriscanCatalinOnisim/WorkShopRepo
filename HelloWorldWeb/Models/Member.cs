@@ -5,15 +5,16 @@ using System.Threading.Tasks;
 
 namespace HelloWorldWeb.Models
 {
-    public class Member
+    public class TeamMember
     {
-        public string name { get; set; }
-        public int id { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        
 
-        public Member(string name, int id)
+        public TeamMember(int id, string name)
         {
-            this.name = name;
-            this.id = id;
+            this.Name = name;
+            this.Id = id;
         }
 
     }

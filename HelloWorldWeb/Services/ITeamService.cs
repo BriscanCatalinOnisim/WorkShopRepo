@@ -4,11 +4,10 @@ namespace HelloWorldWeb.Services
 {
     public interface ITeamService
     {
-        void AddTeamMember(Member member);
-
+        int AddTeamMember(string name);
 
         TeamInfo GetTeamInfo();
 
-        void DeleteTeamMember(Member member);
+        public void RemoveMember(int memberIndex);
     }
 }

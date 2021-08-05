@@ -1,6 +1,5 @@
 ﻿// This JS file now uses jQuery. Pls see here: https://jquery.com/
 $(document).ready(function () {
-    // see https://api.jquery.com/click/
     $("#createButton").click(function () {
         var newcomerName = $("#nameField").val();
 
@@ -18,4 +17,24 @@ $(document).ready(function () {
             }
         })
     })
+
+    $("#deleteField").click(function () {
+        var newcomerName = $("#memberField").val();
+
+        $.ajax({
+            method: "POST",
+            url: "/Home/DeleteTeamMember",
+            data: { "name": newcomerName },
+            success: function (result) {
+                console.log(result);
+                $("#list").remove(`<li>${newcomerName}</li>`);
+                $("#memberField").val("");
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        })
+    })
+
+
 });

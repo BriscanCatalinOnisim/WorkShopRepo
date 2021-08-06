@@ -36,10 +36,11 @@ namespace HelloWorldWeb.Services
             return newId;
         }
 
-        public void RemoveMember(int memberIndex)
+        public void RemoveMember(int id)
         {
-            teamInfo.TeamMembers.RemoveAt(memberIndex);
+            teamInfo.TeamMembers.Remove(this.GetTeamMemberById(id));
         }
+
         public TeamMember GetTeamMemberById(int id)
         {
             // foreach (TeamMember member in this.teamInfo.TeamMembers)

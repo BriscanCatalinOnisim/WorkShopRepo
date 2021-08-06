@@ -69,15 +69,16 @@
 
 });
 
-function deleteMember(index) {
+function deleteMember(id) {
 
     $.ajax({
         url: "/Home/RemoveMember",
         method: "DELETE",
         data: {
-            memberIndex: index
+            "id": id
         },
         success: function (result) {
+            console.log("deleete:" + id);
             location.reload();
         }
     })

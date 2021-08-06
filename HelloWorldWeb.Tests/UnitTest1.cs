@@ -17,15 +17,33 @@ namespace HelloWorldWeb.Tests
             teamService.AddTeamMember( "Geo");
 
             // Assert
-            Assert.Equal(5, teamService.GetTeamInfo().TeamMembers.Count);
-            
-
+            Assert.Equal(5, teamService.GetTeamInfo().TeamMembers.Count);    
         }
+
+        [Fact]
+        public void DeleteTeamMemberToTheTeam()
+        {
+            // Assume
+            ITeamService teamService = new TeamService();
+
+            // Act
+            teamService.AddTeamMember("john");
+            teamService.RemoveMember(4);
+
+            // Assert
+            Assert.Equal(4, teamService.GetTeamInfo().TeamMembers.Count);
+        }
+
         [Fact]
         public void EditTeamMemberInTheTeam()
         {
+            //Assume
             ITeamService teamService = new TeamService();
+           
+            //Act
             teamService.EditTeamMember(3, "Name");
+            
+            //Assert
             Assert.Equal("Name", teamService.GetTeamMemberById(3).Name);
         }
     }

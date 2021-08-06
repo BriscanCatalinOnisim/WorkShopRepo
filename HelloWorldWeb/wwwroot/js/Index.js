@@ -23,6 +23,7 @@
                 </li>`);
                 $("#nameField").val("");
                 document.getElementById("createButton").disabled = true;
+                location.reload();
             },
             error: function (err) {
                 console.log(err);

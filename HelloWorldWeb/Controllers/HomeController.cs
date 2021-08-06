@@ -36,7 +36,7 @@ namespace HelloWorldWeb.Controllers
         [HttpPost]
         public void RenameMember(int id, string name)
         {
-            this.teamService.EditTeamMember(id-1, name);
+            this.teamService.EditTeamMember(id, name);
         }
 
         [HttpGet]

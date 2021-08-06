@@ -18,7 +18,7 @@
                     </span >
                 <span class="delete fa fa-remove" onclick="deleteMember(${result})">
                     </span>
-                <span class="edit fa fa-pencil">
+                <span class="pencil fa fa-pencil">
                     </span>
                 </li>`);
                 $("#nameField").val("");
@@ -34,6 +34,15 @@
     $("#clearButton").click(function ClearFields() {
         document.getElementById("nameField").value = "";
     });
+
+    $("#teamList").on("click", ".pencil", function () {
+        var targetMemberTag = $(this).closest('li');
+        var id = targetMemberTag.attr('data-member-id');
+        var currentName = targetMemberTag.find(".memberName").text();
+        $('#editClassmate').attr("data-member-id", id);
+        $('#classmateName').val(currentName);
+        $('#editClassmate').modal('show');
+    })
 
 });
 

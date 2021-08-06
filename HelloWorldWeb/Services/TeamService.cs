@@ -17,10 +17,11 @@ namespace HelloWorldWeb.Services
                 Name = "Team 2",
                 TeamMembers = new List<TeamMember>()
             };
-            teamInfo.TeamMembers.Add(new TeamMember(1, "Gabi"));
-            teamInfo.TeamMembers.Add(new TeamMember(2, "Delia"));
-            teamInfo.TeamMembers.Add(new TeamMember(3, "Rares"));
-            teamInfo.TeamMembers.Add(new TeamMember(4, "Catalin"));         
+
+            this.AddTeamMember("Gabi");
+            this.AddTeamMember("Delia");
+            this.AddTeamMember("Rares");
+            this.AddTeamMember("Catalin");        
 }
 
         public TeamInfo GetTeamInfo()

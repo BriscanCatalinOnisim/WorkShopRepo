@@ -14,12 +14,19 @@ namespace HelloWorldWeb.Tests
             ITeamService teamService = new TeamService();
 
             // Act
-            teamService.AddTeamMember(new Member("Geo", 5));
+            teamService.AddTeamMember( "Geo");
 
             // Assert
-            Assert.Equal(4, teamService.GetTeamInfo().TeamMembers.Count);
+            Assert.Equal(5, teamService.GetTeamInfo().TeamMembers.Count);
             
 
+        }
+        [Fact]
+        public void EditTeamMemberInTheTeam()
+        {
+            ITeamService teamService = new TeamService();
+            teamService.EditTeamMember(3, "Name");
+            Assert.Equal("Name", teamService.GetTeamMemberById(3).Name);
         }
     }
 }

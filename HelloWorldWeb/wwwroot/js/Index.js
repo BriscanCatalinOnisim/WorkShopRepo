@@ -44,6 +44,28 @@
         $('#editClassmate').modal('show');
     })
 
+    $("#editClassmate").on("click", "#submit", function () {
+        console.log('submit changes to server');
+        var name = $("#classmateName").val();
+        var id = $ ('#editClassmate').attr('data-member-id');
+        $.ajax({
+            url: "/Home/RenameMember",
+            method: "Post",
+            data: {
+                "id": id,
+                "name": name
+            },
+            success: function (result) {
+                console.log('successfully renamed : ${id}');
+                location.reload();
+            }
+        })
+    })
+
+    $("#editClassmate").on("click", "#cancel", function () {
+        console.log('cancel changes');
+    })
+
 });
 
 function deleteMember(index) {

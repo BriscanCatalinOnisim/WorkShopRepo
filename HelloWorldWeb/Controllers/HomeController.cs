@@ -33,6 +33,12 @@ namespace HelloWorldWeb.Controllers
             teamService.RemoveMember(id);
         }
 
+        [HttpPost]
+        public void RenameMember(int id, string name)
+        {
+            this.teamService.EditTeamMember(id-1, name);
+        }
+
         [HttpGet]
         public int GetCount()
         {

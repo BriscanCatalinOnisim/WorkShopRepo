@@ -41,10 +41,10 @@ namespace HelloWorldWeb.Tests
             ITeamService teamService = new TeamService();
            
             //Act
-            teamService.EditTeamMember(3, "Name");
+            teamService.EditTeamMember(4, "Name");
             
             //Assert
-            Assert.Equal("Name", teamService.GetTeamMemberById(3).Name);
+            Assert.Equal("Name", teamService.GetTeamMemberById(4).Name);
         }
     }
 }

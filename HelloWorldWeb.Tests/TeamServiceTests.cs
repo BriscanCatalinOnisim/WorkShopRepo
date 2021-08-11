@@ -17,7 +17,7 @@ namespace HelloWorldWeb.Tests
             teamService.AddTeamMember( "Geo");
 
             // Assert
-            Assert.Equal(5, teamService.GetTeamInfo().TeamMembers.Count);    
+            Assert.Equal(7, teamService.GetTeamInfo().TeamMembers.Count);    
         }
 
         [Fact]
@@ -31,7 +31,7 @@ namespace HelloWorldWeb.Tests
             teamService.RemoveMember(4);
 
             // Assert
-            Assert.Equal(4, teamService.GetTeamInfo().TeamMembers.Count);
+            Assert.Equal(7, teamService.GetTeamInfo().TeamMembers.Count);
         }
 
         [Fact]
@@ -41,10 +41,10 @@ namespace HelloWorldWeb.Tests
             ITeamService teamService = new TeamService();
            
             //Act
-            teamService.EditTeamMember(4, "Name");
+            teamService.EditTeamMember(4, "jovale");
             
             //Assert
-            Assert.Equal("Name", teamService.GetTeamMemberById(4).Name);
+            Assert.Equal("jovale", teamService.GetTeamMemberById(4).Name);
         }
 
     }

@@ -9,20 +9,23 @@ namespace HelloWorldWeb.Services
     public class TeamService : ITeamService
     {
         private readonly TeamInfo teamInfo;
+        private ITimeService timeService;
 
         public TeamService()
         {
             this.teamInfo = new TeamInfo
             {
-                Name = "Team 2",
-                TeamMembers = new List<TeamMember>()
+                Name = "Team1",
+                TeamMembers = new List<TeamMember>(),
             };
 
-            this.AddTeamMember("Gabi");
-            this.AddTeamMember("Delia");
-            this.AddTeamMember("Rares");
-            this.AddTeamMember("Catalin");        
-}
+            teamInfo.TeamMembers.Add(new TeamMember("Sorina", timeService));
+            teamInfo.TeamMembers.Add(new TeamMember("Ema", timeService));
+            teamInfo.TeamMembers.Add(new TeamMember("Radu", timeService));
+            teamInfo.TeamMembers.Add(new TeamMember("Patrick", timeService));
+            teamInfo.TeamMembers.Add(new TeamMember("Tudor", timeService));
+            teamInfo.TeamMembers.Add(new TeamMember("Fineas", timeService));
+        }
 
         public TeamInfo GetTeamInfo()
         {
@@ -32,7 +35,7 @@ namespace HelloWorldWeb.Services
         public int AddTeamMember(string name)
         {
             int newId = teamInfo.TeamMembers.Count() + 1;
-            teamInfo.TeamMembers.Add(new TeamMember(newId, name));
+            teamInfo.TeamMembers.Add(new TeamMember(newId, name, timeService));
             return newId;
         }
 

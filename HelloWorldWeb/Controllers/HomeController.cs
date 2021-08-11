@@ -14,11 +14,13 @@ namespace HelloWorldWeb.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ITeamService teamService;
+        private readonly ITimeService timeService;
 
-        public HomeController(ILogger<HomeController> logger, ITeamService teamService)
+        public HomeController(ILogger<HomeController> logger, ITeamService teamService, ITimeService timeService)
         {
             _logger = logger;
             this.teamService = teamService;
+            this.timeService = timeService;
         }
 
         [HttpPost]

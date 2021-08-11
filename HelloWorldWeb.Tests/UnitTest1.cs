@@ -46,5 +46,24 @@ namespace HelloWorldWeb.Tests
             //Assert
             Assert.Equal("Name", teamService.GetTeamMemberById(4).Name);
         }
+
+        [Fact]
+        public void CheckIdProblem()
+        {
+            //Assume
+            ITeamService teamService = new TeamService();
+            var memberToBeDeleted = teamService.GetTeamInfo().TeamMembers[teamService.GetTeamInfo().TeamMembers.Count - 2];
+            var newMemberName = "Borys";
+
+            //Act
+            teamService.RemoveMember(memberToBeDeleted.Id);
+            var id = teamService.AddTeamMember(newMemberName);
+            teamService.RemoveMember(id);
+
+            //Assert
+            var team = teamService.GetTeamInfo().TeamMembers.Find(el => el.Name == newMemberName);
+            Assert.Null(team);
+        }
+
     }
 }

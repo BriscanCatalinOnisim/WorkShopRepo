@@ -23,7 +23,7 @@ namespace HelloWorldWeb.Tests
 
 
             //Assert
-            Assert.Equal(7, result.Count());
+            Assert.Equal(8, result.Count());
             var firstDay = result.First();
 
             Assert.Equal(new DateTime(2021, 8, 12), firstDay.Day);

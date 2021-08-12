@@ -46,9 +46,24 @@ namespace HelloWorldWeb.Controllers
 
                 dailyWeather.Temperature = item.SelectToken("temp").Value<float>("day");
 
+                string weather = item.SelectToken("weather")[0].Value<string>("description");
+                dailyWeather.Type = Convert(weather);
+
                 result.Add(dailyWeather);
             }
             return result;             
+        }
+
+        private WeatherType Convert(string weather)
+        {
+            switch (weather)
+            {
+                case "few clouds": return WeatherType.FewClouds;
+                case "light rain": return WeatherType.LightRain;
+                case "broken clouds": return WeatherType.BrokenClouds;
+
+                default: throw new Exception($"Unknown Weather {weather}.");
+            }
         }
 
         // GET api/<WeatherController>/5

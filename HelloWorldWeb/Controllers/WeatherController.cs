@@ -14,8 +14,8 @@ namespace HelloWorldWeb.Controllers
     [ApiController]
     public class WeatherController : ControllerBase
     {
-        private readonly string longitude = "46.7700";
-        private readonly string latitude = "23.5800";
+        private readonly string longitude = "23.5800";
+        private readonly string latitude = "46.7700";
         private readonly string apiKey = "c39de899f75ef4e85f748679a0126376";
 
         // GET: api/<WeatherController>
@@ -31,7 +31,7 @@ namespace HelloWorldWeb.Controllers
             return ConvertResponseToWeatherForecastList(response.Content);
         }
 
-        private IEnumerable<DailyWeather> ConvertResponseToWeatherForecastList(string content)
+        public IEnumerable<DailyWeather> ConvertResponseToWeatherForecastList(string content)
         {
             return new DailyWeather[] {
                 new DailyWeather(new DateTime(2021, 8, 12), 23, WeatherType.Mild),

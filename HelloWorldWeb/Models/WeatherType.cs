@@ -3,6 +3,6 @@
     public enum WeatherType
     {
         Freezing, Bracing, Chilly, Cool, Mild,
-        Warm, Balmy, Hot, Sweltering, Scorching
+        Warm, Balmy, Hot, Sweltering, Scorching, FewClouds
     }
 }

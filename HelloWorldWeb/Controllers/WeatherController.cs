@@ -37,10 +37,15 @@ namespace HelloWorldWeb.Controllers
             var json = JObject.Parse(content);
             List<DailyWeather> result = new List<DailyWeather>();
             var jsonArray = json["daily"];
-            foreach (var item in jsonArray)
+            foreach (var item in jsonArray.Take(7))
             {
                 // TODO: convert item to DailyWeather
                 DailyWeather dailyWeather = new DailyWeather(new DateTime(2021, 8, 12), 23, WeatherType.Mild);
+                long unixDateTime = item.Value<long>("dt");
+                dailyWeather.Day = DateTimeOffset.FromUnixTimeSeconds(unixDateTime).DateTime.Date;
+
+                dailyWeather.Temperature = item.SelectToken("temp").Value<float>("day");
+
                 result.Add(dailyWeather);
             }
             return result;             

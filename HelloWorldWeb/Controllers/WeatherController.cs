@@ -39,17 +39,17 @@ namespace HelloWorldWeb.Controllers
             var jsonArray = json["daily"];
             foreach (var item in jsonArray.Take(7))
             {
-                // TODO: convert item to DailyWeather
-                DailyWeather dailyWeather = new DailyWeather(new DateTime(2021, 8, 12), 23, WeatherType.Mild);
-                long unixDateTime = item.Value<long>("dt");
-                dailyWeather.Day = DateTimeOffset.FromUnixTimeSeconds(unixDateTime).DateTime.Date;
+                DailyWeather dailyWeatherRecord = new DailyWeather(new DateTime(2021, 8, 12), 22.0f, WeatherType.Mild);
 
-                dailyWeather.Temperature = item.SelectToken("temp").Value<float>("day");
+                long unixDateTime1 = item.Value<long>("dt");
+                var temperature1 = item.SelectToken("temp");
+                string weather1 = item.SelectToken("weather")[0].Value<string>("description");
 
-                string weather = item.SelectToken("weather")[0].Value<string>("description");
-                dailyWeather.Type = Convert(weather);
-
-                result.Add(dailyWeather);
+                dailyWeatherRecord.Day = DateTimeOffset.FromUnixTimeSeconds(unixDateTime1).DateTime.Date;
+                dailyWeatherRecord.Temperature = DailyWeather.kelvinToCelsius(temperature1.Value<float>("day"));
+                dailyWeatherRecord.Type = Convert(weather1);
+                
+                result.Add(dailyWeatherRecord);
             }
             return result;             
         }
@@ -61,6 +61,8 @@ namespace HelloWorldWeb.Controllers
                 case "few clouds": return WeatherType.FewClouds;
                 case "light rain": return WeatherType.LightRain;
                 case "broken clouds": return WeatherType.BrokenClouds;
+                case "scattered clouds": return WeatherType.ScatteredClouds;
+                case "clear sky": return WeatherType.ClearSky;
 
                 default: throw new Exception($"Unknown Weather {weather}.");
             }

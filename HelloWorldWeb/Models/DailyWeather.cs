@@ -14,6 +14,15 @@ namespace HelloWorldWeb.Models
             Type = type;
         }
 
+        public DailyWeather()
+        {
+        }
+
+        public static float kelvinToCelsius(float temp)
+        {
+            return (float)(temp - 273.15);
+        }
+
         public float Temperature { get; set; }
         public WeatherType Type { get; set; }
         public DateTime Day { get; set; }

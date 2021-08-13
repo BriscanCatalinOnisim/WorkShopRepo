@@ -11,6 +11,10 @@ using System.Threading.Tasks;
 
 namespace HelloWorldWeb.Controllers
 {
+    /// <summary>
+    /// Fetch data from weather api.
+    /// </summary>
+
     [Route("api/[controller]")]
     [ApiController]
     public class WeatherController : ControllerBase
@@ -44,7 +48,7 @@ namespace HelloWorldWeb.Controllers
             var json = JObject.Parse(content);
             if(json["daily"] == null)
             {
-                throw new Exception("Daily empty info!");
+                throw new Exception("ApiKey is not valid!");
             }
             var jsonArray = json["daily"].Take(7);
             return (jsonArray.Select(CreateDailyWeatherFromJToken));        

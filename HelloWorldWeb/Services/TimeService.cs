@@ -9,7 +9,7 @@ namespace HelloWorldWeb.Services
     {
         public DateTime Now()
         {
-            throw new NotImplementedException();
+            return DateTime.Now;
         }
     }
 }

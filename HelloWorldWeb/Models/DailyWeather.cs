@@ -20,9 +20,10 @@ namespace HelloWorldWeb.Models
 
         public static float kelvinToCelsius(float temp)
         {
-            return (float)(temp - 273.15);
+            return temp - KELVIN_CONST;
         }
 
+        public const float KELVIN_CONST = 273.15f;
         public float Temperature { get; set; }
         public WeatherType Type { get; set; }
         public DateTime Day { get; set; }

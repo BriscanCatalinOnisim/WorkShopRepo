@@ -1,7 +1,4 @@
 {
-  "ConnectionStrings": {
-    "DefaultConnection": "Server=LAPTOP-2GI4N8QM\\SQLEXPRESS;Database=HelloWorldWebDB;Trusted_Connection=True;MultipleActiveResultSets=true"
-  },
   "Logging": {
     "LogLevel": {
       "Default": "Information",

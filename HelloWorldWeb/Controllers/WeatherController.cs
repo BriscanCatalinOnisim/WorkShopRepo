@@ -19,11 +19,6 @@ namespace HelloWorldWeb.Controllers
         private readonly string latitude = "46.7700";
         private readonly string apiKey = "c39de899f75ef4e85f748679a0126376";
 
-        public WeatherController()
-        {
-
-        }
-
         public WeatherController(IWeatherControllerSettings conf)
         {
             longitude = conf.Longitude;
@@ -47,6 +42,10 @@ namespace HelloWorldWeb.Controllers
         public IEnumerable<DailyWeather> ConvertResponseToWeatherForecastList(string content)
         {
             var json = JObject.Parse(content);
+            if(json["daily"] == null)
+            {
+                throw new Exception("Daily empty info!");
+            }
             var jsonArray = json["daily"].Take(7);
             return (jsonArray.Select(CreateDailyWeatherFromJToken));        
 
@@ -73,7 +72,7 @@ namespace HelloWorldWeb.Controllers
                 case "broken clouds": return WeatherType.BrokenClouds;
                 case "scattered clouds": return WeatherType.ScatteredClouds;
                 case "clear sky": return WeatherType.ClearSky;
-
+                case "moderate rain": return WeatherType.ModerateRain;
                 default: throw new Exception($"Unknown Weather {weather}.");
             }
         }

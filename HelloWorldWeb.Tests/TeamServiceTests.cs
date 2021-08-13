@@ -39,13 +39,14 @@ namespace HelloWorldWeb.Tests
         {
             //Assume
             ITeamService teamService = new TeamService();
-           
             //Act
-            teamService.EditTeamMember(4, "jovale");
-            
+            teamService.EditTeamMember(3, "NewName");
             //Assert
-            Assert.Equal("jovale", teamService.GetTeamMemberById(4).Name);
+            Assert.Equal("NewName", teamService.GetTeamMemberById(3).Name);
+
+
         }
+
 
     }
 }

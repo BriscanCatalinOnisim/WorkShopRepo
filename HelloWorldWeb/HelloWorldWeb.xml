@@ -4,11 +4,7 @@
         <name>HelloWorldWeb</name>
     </assembly>
     <members>
-        <member name="T:HelloWorldWeb.Controllers.WeatherController">
-            <summary>
-            Fetch data from weather api.
-            </summary>
-        </member>
+        <!-- Badly formed XML comment ignored for member "T:HelloWorldWeb.Controllers.WeatherController" -->
         <member name="M:HelloWorldWeb.Controllers.WeatherController.Get(System.Int32)">
             <summary>
             Get a weather forecast for the day in specified amount of days from now.

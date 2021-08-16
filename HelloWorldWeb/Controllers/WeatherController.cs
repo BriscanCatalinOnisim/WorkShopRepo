@@ -43,6 +43,7 @@ namespace HelloWorldWeb.Controllers
             return ConvertResponseToWeatherForecastList(response.Content);
         }
 
+        [NonAction]
         public IEnumerable<DailyWeather> ConvertResponseToWeatherForecastList(string content)
         {
             var json = JObject.Parse(content);
@@ -55,6 +56,7 @@ namespace HelloWorldWeb.Controllers
 
         }
 
+        [NonAction]
         public DailyWeather CreateDailyWeatherFromJToken(JToken item)
         {
             long unixDateTime1 = item.Value<long>("dt");
@@ -77,13 +79,19 @@ namespace HelloWorldWeb.Controllers
                 case "scattered clouds": return WeatherType.ScatteredClouds;
                 case "clear sky": return WeatherType.ClearSky;
                 case "moderate rain": return WeatherType.ModerateRain;
+                case "overcast clouds": return WeatherType.OvercastClouds;
                 default: throw new Exception($"Unknown Weather {weather}.");
             }
         }
 
-        // GET api/<WeatherController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+
+        /// <summary>
+        /// Get a weather forecast for the day in specified amount of days from now.
+        /// </summary>
+        /// <param name="index">Amount of days from now (from 0 to 7).</param>
+        /// <returns>The weather forecast.</returns>
+        [HttpGet("{index}")]
+        public string Get(int index)
         {
             return "value";
         }

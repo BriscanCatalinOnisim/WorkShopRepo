@@ -1,4 +1,6 @@
-﻿namespace HelloWorldWeb.Models
+﻿#pragma warning disable 1591
+
+namespace HelloWorldWeb.Models
 {
     public enum WeatherType
     {

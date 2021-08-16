@@ -1,4 +1,6 @@
-﻿using HelloWorldWeb.Models;
+﻿#pragma warning disable 1591
+
+using HelloWorldWeb.Models;
 
 namespace HelloWorldWeb.Services
 {

@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+#pragma warning disable 1591
+
 namespace HelloWorldWeb
 {
     public class Program
@@ -17,15 +19,12 @@ namespace HelloWorldWeb
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
-Host.CreateDefaultBuilder(args)
-.ConfigureWebHostDefaults(webBuilder =>
-{
-    var port = Environment.GetEnvironmentVariable("PORT");
-
-
-
-    webBuilder.UseStartup<Startup>()
-    .UseUrls("http://*:" + port);
-});
+            Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                var port = Environment.GetEnvironmentVariable("PORT");
+                webBuilder.UseStartup<Startup>()
+                .UseUrls("http://*:" + port);
+            });
     }
 }

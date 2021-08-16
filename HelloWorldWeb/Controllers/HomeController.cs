@@ -8,6 +8,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
+#pragma warning disable 1591
+
 namespace HelloWorldWeb.Controllers
 {
     public class HomeController : Controller

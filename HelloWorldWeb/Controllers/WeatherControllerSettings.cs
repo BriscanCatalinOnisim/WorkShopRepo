@@ -1,6 +1,8 @@
 ﻿using HelloWorldWeb.Controllers;
 using Microsoft.Extensions.Configuration;
 
+#pragma warning disable 1591
+
 namespace HelloWorldWeb
 {
     public class WeatherControllerSettings : IWeatherControllerSettings

@@ -14,6 +14,8 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
+#pragma warning disable 1591
+
 namespace HelloWorldWeb
 {
     public class Startup

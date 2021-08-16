@@ -1,4 +1,6 @@
-﻿namespace HelloWorldWeb.Controllers
+﻿#pragma warning disable 1591
+
+namespace HelloWorldWeb.Controllers
 {
     public interface IWeatherControllerSettings
     {

@@ -84,7 +84,7 @@ namespace HelloWorldWeb.Controllers
         }
 
         // GET api/<WeatherController>/5
-        [HttpGet("{id}")]
+        [HttpGet("{index}")]
         public DailyWeather Get(int index)
         {
             return Get().ElementAt(index) ;

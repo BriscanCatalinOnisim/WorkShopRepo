@@ -12,7 +12,8 @@ using System.Threading.Tasks;
 namespace HelloWorldWeb.Controllers
 {
     /// <summary>
-    /// Fetch data from weather api.
+    /// Fetch data from weather api :https://openweathermap.org/api.
+    /// <see href="https://openweathermap.org/api">
     /// </summary>
 
     [Route("api/[controller]")]
@@ -108,10 +109,5 @@ namespace HelloWorldWeb.Controllers
         {
         }
 
-        // DELETE api/<WeatherController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }

@@ -1,67 +1,71 @@
-﻿using HelloWorldWeb.Models;
-using HelloWorldWeb.Services;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+﻿// <copyright file="HomeController.cs" company="Principal33">
+// Copyright (c) Principal33. All rights reserved.
+// </copyright>
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-
-#pragma warning disable 1591
+using HelloWorldWeb.Models;
+using HelloWorldWeb.Services;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Linq;
 
 namespace HelloWorldWeb.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<HomeController> logger;
         private readonly ITeamService teamService;
         private readonly ITimeService timeService;
 
         public HomeController(ILogger<HomeController> logger, ITeamService teamService, ITimeService timeService)
         {
-            _logger = logger;
+            this.logger = logger;
             this.teamService = teamService;
             this.timeService = timeService;
         }
 
         [HttpPost]
-        public void AddTeamMember(string name)
-        {            
-            teamService.AddTeamMember(name);
-        }
-
-        [HttpDelete]
-        public void RemoveMember(int id)
+        public int AddTeamMember(string name)
         {
-            teamService.RemoveMember(id);
+            return this.teamService.AddTeamMember(name);
         }
 
         [HttpPost]
-        public void RenameMember(int id, string name)
+        public void UpdateMemberName(int memberId, string name)
         {
-            this.teamService.EditTeamMember(id, name);
+            this.teamService.UpdateMemberName(memberId, name);
+        }
+
+        [HttpDelete]
+        public void RemoveMember(int memberIndex)
+        {
+            this.teamService.RemoveMember(memberIndex);
         }
 
         [HttpGet]
         public int GetCount()
         {
-            return teamService.GetTeamInfo().TeamMembers.Count;
+            return this.teamService.GetTeamInfo().TeamMembers.Count;
         }
+
         public IActionResult Index()
         {
-            return View(teamService.GetTeamInfo());
+            return this.View(this.teamService.GetTeamInfo());
         }
 
         public IActionResult Privacy()
         {
-            return View();
+            return this.View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return this.View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? this.HttpContext.TraceIdentifier });
         }
     }
 }

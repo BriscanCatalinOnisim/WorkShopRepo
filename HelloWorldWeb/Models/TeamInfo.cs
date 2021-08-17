@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
+﻿// <copyright file="TeamInfo.cs" company="Principal33">
+// Copyright (c) Principal33. All rights reserved.
+// </copyright>
 
-#pragma warning disable 1591
+using System.Collections.Generic;
 
 namespace HelloWorldWeb.Models
 {
     public class TeamInfo
     {
         public string Name { get; set; }
-        public List<TeamMember> TeamMembers { get; set; } 
+
+        public List<TeamMember> TeamMembers { get; set; }
     }
-
-
 }

@@ -32,7 +32,7 @@ namespace HelloWorldWeb.Services
             return teamInfo;
         }
 
-        public int AddTeamMember(string name)
+        public int AddTeamMemberAsync(string name)
         {
             int newId = teamInfo.TeamMembers.Count() + 1;
             teamInfo.TeamMembers.Add(new TeamMember(newId, name, timeService));

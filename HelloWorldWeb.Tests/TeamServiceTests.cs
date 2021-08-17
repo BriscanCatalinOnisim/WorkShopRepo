@@ -14,7 +14,7 @@ namespace HelloWorldWeb.Tests
             ITeamService teamService = new TeamService();
 
             // Act
-            teamService.AddTeamMember( "Geo");
+            teamService.AddTeamMemberAsync( "Geo");
 
             // Assert
             Assert.Equal(7, teamService.GetTeamInfo().TeamMembers.Count);    
@@ -27,7 +27,7 @@ namespace HelloWorldWeb.Tests
             ITeamService teamService = new TeamService();
 
             // Act
-            teamService.AddTeamMember("john");
+            teamService.AddTeamMemberAsync("john");
             teamService.RemoveMember(4);
 
             // Assert

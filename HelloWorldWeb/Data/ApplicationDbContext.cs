@@ -12,5 +12,7 @@ namespace HelloWorldWeb.Data
             : base(options)
         {
         }
+
+        public DbSet<HelloWorldWeb.Models.TeamMember> TeamMembers { get; set; }
     }
 }

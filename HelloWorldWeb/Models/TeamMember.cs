@@ -33,6 +33,14 @@ namespace HelloWorldWeb.Models
             idCount++;
         }
 
+        public TeamMember(string name)
+        {
+            this.Id = idCount;
+            this.Name = name;
+
+            idCount++;
+        }
+
         public int getAge()
         {
             TimeSpan age;

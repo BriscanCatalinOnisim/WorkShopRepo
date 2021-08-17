@@ -34,7 +34,8 @@ namespace HelloWorldWeb.Services
 
         public TeamMember GetTeamMemberById(int v)
         {
-            throw new NotImplementedException();
+            var teamMember = this.context.TeamMembers.Find(v);
+            return teamMember;
         }
 
         public void RemoveMember(int memberIndex)

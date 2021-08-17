@@ -27,10 +27,10 @@ namespace HelloWorldWeb.Tests
 
             // Act
             teamService.AddTeamMember("intern");
-            teamService.RemoveMember(2);
+            teamService.RemoveMember(0);
 
             // Assert
-            Assert.Equal(7, teamService.GetTeamInfo().TeamMembers.Count);
+            Assert.Equal(6, teamService.GetTeamInfo().TeamMembers.Count);
         }
 
         [Fact]
@@ -40,10 +40,10 @@ namespace HelloWorldWeb.Tests
             ITeamService teamService = new TeamService();
 
             // Act
-            teamService.UpdateMemberName(1, "UnitTest");
+            teamService.UpdateMemberName(0, "UnitTest");
 
             // Assert
-            var member = teamService.GetTeamMemberById(1);
+            var member = teamService.GetTeamMemberById(0);
             Assert.Equal("UnitTest", member.Name);
         }
     }

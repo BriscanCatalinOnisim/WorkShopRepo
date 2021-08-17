@@ -1,43 +1,50 @@
-﻿using HelloWorldWeb.Models;
-using HelloWorldWeb.Services;
-using Moq;
+﻿using HelloWorldWeb.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace HelloWorldWeb.Tests
 {
     public class TeamMemberTests
     {
-        private Mock<ITimeService> timeMock;
-
-        private void InitializeTimeServiceMock()
+        [Fact]
+        public void AddTeamMemberToTheTeam()
         {
-            timeMock = new Mock<ITimeService>();
-            timeMock.Setup(_ => _.Now()).Returns(new DateTime(2021, 11, 11));
-            
+            // Assume
+            TeamService teamService = new TeamService();
+
+            // Act
+            teamService.AddTeamMember("intern");
+
+            // Assert
+            Assert.Equal(7, teamService.GetTeamInfo().TeamMembers.Count);
         }
 
         [Fact]
-        public void GettingAge()
+        public void RemoveMemberFromTheTeamAfterAdding()
         {
-            //Assume
-            InitializeTimeServiceMock();
-            var timeservice = timeMock.Object;
-            var teamMember = new TeamMember(1, "John", timeservice);
-            teamMember.Birthdate = new DateTime(1999, 11, 14);
-           
-            //Act
-            int age = teamMember.getAge();
+            // Assume
+            TeamService teamService = new TeamService();
 
-            //Assert
-            timeMock.Verify(_ => _.Now(), Times.AtMostOnce());
-            Assert.Equal(21, age);
+            // Act
+            teamService.AddTeamMember("intern");
+            teamService.RemoveMember(2);
+
+            // Assert
+            Assert.Equal(6, teamService.GetTeamInfo().TeamMembers.Count);
         }
 
+        [Fact]
+        public void UpdateMemberName()
+        {
+            // Assume
+            ITeamService teamService = new TeamService();
 
+            // Act
+            teamService.UpdateMemberName(1, "UnitTest");
+
+            // Assert
+            var member = teamService.GetTeamMemberById(1);
+            Assert.Equal("UnitTest", member.Name);
+        }
     }
 }

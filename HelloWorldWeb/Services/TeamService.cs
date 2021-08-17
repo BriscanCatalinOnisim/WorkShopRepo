@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using HelloWorldWeb.Models;
 
 namespace HelloWorldWeb.Services
@@ -7,7 +6,6 @@ namespace HelloWorldWeb.Services
     public class TeamService : ITeamService
     {
         private readonly TeamInfo teamInfo;
-        private readonly ITimeService timeService;
 
         public TeamService()
         {
@@ -49,16 +47,15 @@ namespace HelloWorldWeb.Services
 
         public int AddTeamMember(string name)
         {
-            TeamMember teamMember = new TeamMember(name, this.timeService);
-
+            TeamMember teamMember = new TeamMember() { Name = name };
             this.teamInfo.TeamMembers.Add(teamMember);
             return teamMember.Id;
         }
 
         public void UpdateMemberName(int memberId, string name)
         {
-            TeamMember member = this.teamInfo.TeamMembers.Single(element => element.Id == memberId);
-            member.Name = name;
+            int index = this.teamInfo.TeamMembers.FindIndex(element => element.Id == memberId);
+            this.teamInfo.TeamMembers[index].Name = name;
         }
     }
 }

@@ -3,61 +3,50 @@
     $("#createButton").click(function () {
         var newcomerName = $("#nameField").val();
         var length = $("#teamMembers").children().length;
+
         $.ajax({
-            method: "POST",
             url: "/Home/AddTeamMember",
+            method: "POST",
             data: {
                 "name": newcomerName
             },
-            success: (result) => {
-                console.log(result);
-                $("#teamList").append(
-                    `<li>
-                <span class="memberName">
-                        ${newcomerName}
-                    </span >
-                <span class="delete fa fa-remove" onclick="deleteMember(${result})">
-                    </span>
-                <span class="pencil fa fa-pencil">
-                    </span>
-                </li>`);
+            success: function (result) {
+                var g = result;
+                $("#teamMembers").append(`
+            <li class="member" member-id=${result}>
+            <span class="memberName">${newcomerName}</span>
+            <span class="delete fa fa-remove" onclick="deleteMember(${g})"></span>
+            <span class="pencil fa fa-pencil"></span>
+             </li>`);
                 $("#nameField").val("");
                 document.getElementById("createButton").disabled = true;
-                location.reload();
-            },
-            error: function (err) {
-                console.log(err);
             }
         })
+    })
 
-    });
 
-    $("#clearButton").click(function ClearFields() {
-        document.getElementById("nameField").value = "";
-    });
-
-    $("#teamList").on("click", ".pencil", function () {
+    $("#teamMembers").on("click", ".pencil", function () {
         var targetMemberTag = $(this).closest('li');
-        var id = targetMemberTag.attr('data-member-id');
-        var currentName = targetMemberTag.find(".memberName").text();
-        $('#editClassmate').attr("data-member-id", id);
+        var id = targetMemberTag.attr('member-id');
+        var currentName = targetMemberTag.find(".name").text();
+        $('#editClassmate').attr("member-id", id);
         $('#classmateName').val(currentName);
         $('#editClassmate').modal('show');
     })
 
+
     $("#editClassmate").on("click", "#submit", function () {
+        const id = $('#editClassmate').attr('member-id');
         console.log('submit changes to server');
-        var name = $("#classmateName").val();
-        var id = $ ('#editClassmate').attr('data-member-id');
+        const newName = $('#classmateName').val();
         $.ajax({
-            url: "/Home/RenameMember",
-            method: "Post",
+            url: "/Home/UpdateMemberName",
+            method: "POST",
             data: {
-                "id": id,
-                "name": name
+                memberId: id,
+                name: newName
             },
             success: function (result) {
-                console.log('successfully renamed : ${id}');
                 location.reload();
             }
         })
@@ -66,25 +55,10 @@
     $("#editClassmate").on("click", "#cancel", function () {
         console.log('cancel changes');
     })
-
 });
 
-function deleteMember(id) {
-
-    $.ajax({
-        url: "/Home/RemoveMember",
-        method: "DELETE",
-        data: {
-            "id": id
-        },
-        success: function (result) {
-            console.log("deleete:" + id);
-            location.reload();
-        }
-    })
-}
-
 (function () {
+
     $('#nameField').on('change textInput input', function () {
         var inputVal = this.value;
         if (inputVal != "") {
@@ -92,5 +66,24 @@ function deleteMember(id) {
         } else {
             document.getElementById("createButton").disabled = true;
         }
+    });
+}());
+
+function deleteMember(index) {
+    $.ajax({
+        url: "/Home/RemoveMember",
+        method: "DELETE",
+        data: {
+            memberIndex: index
+        },
+        success: function (result) {
+            location.reload();
+        }
+    })
+}
+
+(function () {
+    $("#clearButton").click(function () {
+        document.getElementById("nameField").value = "";
     });
 }());

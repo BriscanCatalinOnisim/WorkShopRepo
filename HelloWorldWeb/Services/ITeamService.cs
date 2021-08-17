@@ -1,5 +1,3 @@
-﻿#pragma warning disable 1591
-
 using HelloWorldWeb.Models;
 
 namespace HelloWorldWeb.Services
@@ -8,11 +6,12 @@ namespace HelloWorldWeb.Services
     {
         int AddTeamMember(string name);
 
+        public void RemoveMember(int memberIndex);
+
         TeamInfo GetTeamInfo();
 
-        TeamMember GetTeamMemberById(int id);
-        void EditTeamMember(int id, string name);
+        public TeamMember GetTeamMemberById(int v);
 
-        public void RemoveMember(int memberIndex);
+        public void UpdateMemberName(int memberId, string name);
     }
 }

@@ -1,70 +1,64 @@
-﻿using HelloWorldWeb.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-
-#pragma warning disable 1591
+using HelloWorldWeb.Models;
 
 namespace HelloWorldWeb.Services
 {
     public class TeamService : ITeamService
     {
         private readonly TeamInfo teamInfo;
-        private ITimeService timeService;
+        private readonly ITimeService timeService;
 
         public TeamService()
         {
             this.teamInfo = new TeamInfo
             {
-                Name = "Team1",
+                Name = "Team 3",
                 TeamMembers = new List<TeamMember>(),
             };
-
-            teamInfo.TeamMembers.Add(new TeamMember("Sorina", timeService));
-            teamInfo.TeamMembers.Add(new TeamMember("Ema", timeService));
-            teamInfo.TeamMembers.Add(new TeamMember("Radu", timeService));
-            teamInfo.TeamMembers.Add(new TeamMember("Patrick", timeService));
-            teamInfo.TeamMembers.Add(new TeamMember("Tudor", timeService));
-            teamInfo.TeamMembers.Add(new TeamMember("Fineas", timeService));
+            this.AddTeamMember("Teona");
+            this.AddTeamMember("Radu");
+            this.AddTeamMember("George");
+            this.AddTeamMember("Dragos");
+            this.AddTeamMember("Claudia");
+            this.AddTeamMember("Leon");
         }
 
         public TeamInfo GetTeamInfo()
         {
-            return teamInfo;
-        }
-
-        public int AddTeamMember(string name)
-        {
-            int newId = teamInfo.TeamMembers.Count() + 1;
-            teamInfo.TeamMembers.Add(new TeamMember(newId, name, timeService));
-            return newId;
-        }
-
-        public void RemoveMember(int id)
-        {
-            teamInfo.TeamMembers.Remove(this.GetTeamMemberById(id));
+            return this.teamInfo;
         }
 
         public TeamMember GetTeamMemberById(int id)
         {
-            // foreach (TeamMember member in this.teamInfo.TeamMembers)
-            // {
-            //    if (member.Id == id)
-            //    {
-            //        return member;
-            //    }
+            foreach (TeamMember teamMember in this.teamInfo.TeamMembers)
+            {
+                if (id == teamMember.Id)
+                {
+                    return teamMember;
+                }
+            }
 
-            // }
-
-            // return null;
-            Console.WriteLine(id);
-            return this.teamInfo.TeamMembers.Find(x => x.Id == id);
+            return null;
         }
 
-        public void EditTeamMember(int id, string name)
+        public void RemoveMember(int id)
         {
-            this.GetTeamMemberById(id).Name = name;
+            this.teamInfo.TeamMembers.Remove(this.GetTeamMemberById(id));
+        }
+
+        public int AddTeamMember(string name)
+        {
+            TeamMember teamMember = new TeamMember(name, this.timeService);
+
+            this.teamInfo.TeamMembers.Add(teamMember);
+            return teamMember.Id;
+        }
+
+        public void UpdateMemberName(int memberId, string name)
+        {
+            TeamMember member = this.teamInfo.TeamMembers.Single(element => element.Id == memberId);
+            member.Name = name;
         }
     }
 }

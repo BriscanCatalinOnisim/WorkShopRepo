@@ -77,6 +77,7 @@ namespace HelloWorldWeb
         {
             var databaseUri = new Uri(herokuConnectionString);
             var vals = databaseUri.UserInfo.Split(":");
+            databaseUri.LocalPath.TrimStart('/');
             return $"Host={databaseUri.Host};Port={databaseUri.Port};Username={vals[0]};Password={vals[1]};Database={databaseUri.LocalPath};Pooling=true;SSL Mode=Require;TrustServerCertificate=True;";
         }
     }

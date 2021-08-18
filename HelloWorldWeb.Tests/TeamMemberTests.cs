@@ -19,7 +19,7 @@ namespace HelloWorldWeb.Tests
             Assert.Equal(7, teamService.GetTeamInfo().TeamMembers.Count);
         }
 
-        [Fact(Skip = "Skipped for the moment.")]
+        [Fact]
         public void RemoveMemberFromTheTeamAfterAdding()
         {
             // Assume
@@ -27,23 +27,23 @@ namespace HelloWorldWeb.Tests
 
             // Act
             teamService.AddTeamMember("intern");
-            teamService.RemoveMember(0);
+            teamService.RemoveMember(1);
 
             // Assert
             Assert.Equal(6, teamService.GetTeamInfo().TeamMembers.Count);
         }
 
-        [Fact(Skip = "Skiped because the id is not good.")]
+        [Fact]
         public void UpdateMemberName()
         {
             // Assume
             ITeamService teamService = new TeamService();
 
             // Act
-            teamService.UpdateMemberName(0, "UnitTest");
+            teamService.UpdateMemberName(1, "UnitTest");
 
             // Assert
-            var member = teamService.GetTeamMemberById(0);
+            var member = teamService.GetTeamMemberById(1);
             Assert.Equal("UnitTest", member.Name);
         }
     }

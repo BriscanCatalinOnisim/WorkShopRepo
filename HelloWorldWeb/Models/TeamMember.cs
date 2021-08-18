@@ -18,21 +18,15 @@ namespace HelloWorldWeb.Models
         public string Name { get; set; }
         public TeamMember()
         {
-
-        }
-
-        public TeamMember(int id, string name)
-        {
-            this.Id = id;
-            this.Name = name;
-
+            this.Id = idCounter;
+            idCounter++;
         }
 
         public TeamMember(string name)
         {
-            this.Id = GetIdCounter()+1;
+            this.Id = idCounter;
             this.Name = name;
-
+            idCounter++;
         }
 
         public static int GetIdCounter()

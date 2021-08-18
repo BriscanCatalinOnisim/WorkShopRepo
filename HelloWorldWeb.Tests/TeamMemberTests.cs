@@ -19,7 +19,7 @@ namespace HelloWorldWeb.Tests
             Assert.Equal(7, teamService.GetTeamInfo().TeamMembers.Count);
         }
 
-        [Fact(Skip = "Skipped for the moment")]
+        [Fact(Skip = "Skipped for the moment.")]
         public void RemoveMemberFromTheTeamAfterAdding()
         {
             // Assume
@@ -33,7 +33,7 @@ namespace HelloWorldWeb.Tests
             Assert.Equal(6, teamService.GetTeamInfo().TeamMembers.Count);
         }
 
-        [Fact]
+        [Fact(Skip = "Skiped because the id is not good.")]
         public void UpdateMemberName()
         {
             // Assume

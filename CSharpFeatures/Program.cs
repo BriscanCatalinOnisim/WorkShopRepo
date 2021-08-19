@@ -23,10 +23,18 @@ namespace CSharpFeatures
             Console.Write("Introduce type of coffe : ");
             var readLine = Console.ReadLine();
 
-            Func<string, string, string, string, Coffe> receipe = readLine != "FlatWhite" ? Espresso : FlatWhite;
+            Func<string, string, string, string, Coffe> receipe = readLine == "FlatWhite" ? FlatWhite : Espresso;
 
-            Coffe coffe = MakeCoffe("grain", "milk", "water", " sugar", FlatWhite);
-            Console.WriteLine($"Here is your coffe: {coffe} .");
+            Coffe coffe = MakeCoffe("grain", "milk", "water", " sugar", receipe);
+            if (coffe == null)
+            { 
+                Console.WriteLine("Coffe couldn't be prepared."); 
+                
+            }
+            else
+            { 
+                Console.WriteLine($"Here is your coffe: {coffe} ."); 
+            }
 
         }
 
@@ -38,9 +46,15 @@ namespace CSharpFeatures
                 var coffe = recipe(grains, milk, water, sugar);
                 return coffe;
             }
-            catch (Exception)
+            catch (ReceipeUnavailableException e)
             {
-                throw;
+                Console.WriteLine(e.Message);
+                return null;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Something went Wrong : {e.Message}.");
+                return null;
             }
             finally
             {
@@ -50,7 +64,7 @@ namespace CSharpFeatures
 
         static Coffe Espresso(string grains, string milk, string water, string sugar)
         {
-            return new Coffe("Espresso");
+            throw new ApplicationException();
         }
 
         static Coffe FlatWhite(string grains, string milk, string water, string sugar)

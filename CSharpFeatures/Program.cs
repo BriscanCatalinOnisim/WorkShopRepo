@@ -16,6 +16,9 @@ namespace CSharpFeatures
             File.WriteAllText("TeamMember.json", jsonString);
 
             var teamMemberDeserializer = JsonSerializer.Deserialize<TeamMember>(jsonString);
+            string read = File.ReadAllText("TeamMember.json");
+
+            Console.WriteLine(read);
 
 
         }

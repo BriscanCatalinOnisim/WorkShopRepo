@@ -1,6 +1,7 @@
 ﻿using HelloWorldWeb.Services;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace HelloWorldWeb.Models
 {
+    [DebuggerDisplay("{Name}[{Id}]")]
     public class TeamMember
     {
         public int Id { get; set; }

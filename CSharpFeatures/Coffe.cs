@@ -12,5 +12,9 @@
             this.CoffeType = type;
         }
 
+        public override string ToString()
+        {
+            return CoffeType;
+        }
     }
 }

@@ -32,8 +32,8 @@ namespace HelloWorldWeb
         {
             services.AddControllersWithViews();
             services.AddSingleton<IWeatherControllerSettings, WeatherControllerSettings>();
-            services.AddSingleton<ITeamService>(new TeamService());
-            services.AddSingleton<ITimeService>(new TimeService());
+            services.AddSingleton<ITeamService, TeamService>();
+            services.AddSingleton<ITimeService, TimeService>();
 
             services.AddSwaggerGen(c =>
             {

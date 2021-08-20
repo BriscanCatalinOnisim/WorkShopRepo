@@ -1,4 +1,19 @@
-﻿$(document).ready(function () {
+﻿'use strict';
+
+$(document).ready(function () {
+
+    var connection = new signalR.HubConnectionBuilder().withUrl("/messagehub").build();
+
+    connection.on("NewTeamMemberAdded", function (name, id) {
+        console.log(`New team member added: ${name}, ${id}`);
+        createNewcomer(name, id)
+    });
+
+    connection.start().then(function () {
+        console.log("signalr connected");
+    }).catch(function (err) {
+        return console.error(err.toString());
+    });
 
     $("#createButton").click(function () {
         var newcomerName = $("#nameField").val();
@@ -23,7 +38,7 @@
                 </li>`);
                 $("#nameField").val("");
                 document.getElementById("createButton").disabled = true;
-                location.reload();
+                //location.reload();
             },
             error: function (err) {
                 console.log(err);
@@ -83,6 +98,19 @@ function deleteMember(id) {
         }
     })
 }
+
+function createNewcomer(name, id) {
+    // Remember string interpolation
+    $("#teamList").append(`
+        <li class="member" data-member-id="${id}">
+            <span class="memberName">${name}</span>
+            <span class="delete fa fa-remove" onclick="deleteMember(${id})"></span>
+            <span class="pencil fa fa-pencil"></span>
+        </li>`);
+}
+/*    $("#clear").click(function () {
+        $("#newcomer").val("");
+    })*/
 
 (function () {
     $('#nameField').on('change textInput input', function () {

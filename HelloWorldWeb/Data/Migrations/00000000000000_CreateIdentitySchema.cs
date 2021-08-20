@@ -1,6 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿// <copyright file="00000000000000_CreateIdentitySchema.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using System;
+
+#pragma warning disable SA1413 // Use trailing comma in multi-line initializers
+#pragma warning disable SA1600 // Elements should be documented
+#pragma warning disable SA1601 // Partial elements should be documented
 
 namespace HelloWorldWeb.Data.Migrations
 {
@@ -217,4 +225,7 @@ namespace HelloWorldWeb.Data.Migrations
                 name: "AspNetUsers");
         }
     }
+#pragma warning restore SA1601 // Partial elements should be documented
+#pragma warning restore SA1600 // Elements should be documented
+#pragma warning restore SA1413 // Use trailing comma in multi-line initializers
 }

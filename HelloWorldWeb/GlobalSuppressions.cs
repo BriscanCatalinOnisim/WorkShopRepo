@@ -1,9 +1,9 @@
-﻿// This file is used by Code Analysis to maintain SuppressMessage
-// attributes that are applied to this project.
-// Project-level suppressions either have no target or are given
-// a specific target and scoped to a namespace, type, member, etc.
+﻿// <copyright file="GlobalSuppressions.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 using System.Diagnostics.CodeAnalysis;
 
-[assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:Elements should be documented", Justification = "<Pending>", Scope = "member", Target = "~M:HelloWorldWeb.Controllers.HomeController.GetCount(System.String)~System.Int32")]
+#pragma warning disable SA1404 // Code analysis suppression should have justification
 [assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:Elements should be documented", Justification = "<Pending>", Scope = "member", Target = "~M:HelloWorldWeb.Program.Main(System.String[])")]
+#pragma warning restore SA1404 // Code analysis suppression should have justification

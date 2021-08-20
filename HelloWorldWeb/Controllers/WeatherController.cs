@@ -1,4 +1,8 @@
-﻿using HelloWorldWeb.Models;
+﻿// <copyright file="WeatherController.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+using HelloWorldWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using RestSharp;
@@ -7,15 +11,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+#pragma warning disable SA1600 // Elements should be documented
+#pragma warning disable SA1101 // Prefix local calls with this
+#pragma warning disable CS1570 // XML comment has badly formed XML
 
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 namespace HelloWorldWeb.Controllers
 {
     /// <summary>
     /// Fetch data from weather api :https://openweathermap.org/api.
     /// <see href="https://openweathermap.org/api">
-    /// </summary>
-
+    /// </summary>.
     [Route("api/[controller]")]
     [ApiController]
     public class WeatherController : ControllerBase
@@ -35,8 +41,8 @@ namespace HelloWorldWeb.Controllers
         [HttpGet]
         public IEnumerable<DailyWeather> Get()
         {
-            //lat 46.7700 lon 23.5800
-            //https://api.openweathermap.org/data/2.5/onecall?lat=46.7700&lon=23.5800&exclude=hourly,minutely&appid=c39de899f75ef4e85f748679a0126376
+            // lat 46.7700 lon 23.5800
+            // https://api.openweathermap.org/data/2.5/onecall?lat=46.7700&lon=23.5800&exclude=hourly,minutely&appid=c39de899f75ef4e85f748679a0126376
             var client = new RestClient($"https://api.openweathermap.org/data/2.5/onecall?lat={latitude}&lon={longitude}&exclude=hourly,minutely&appid={apiKey}");
             client.Timeout = -1;
             var request = new RestRequest(Method.GET);
@@ -48,13 +54,13 @@ namespace HelloWorldWeb.Controllers
         public IEnumerable<DailyWeather> ConvertResponseToWeatherForecastList(string content)
         {
             var json = JObject.Parse(content);
-            if(json["daily"] == null)
+            if (json["daily"] == null)
             {
                 throw new Exception("ApiKey is not valid!");
             }
-            var jsonArray = json["daily"].Take(7);
-            return (jsonArray.Select(CreateDailyWeatherFromJToken));        
 
+            var jsonArray = json["daily"].Take(7);
+            return jsonArray.Select(CreateDailyWeatherFromJToken);
         }
 
         [NonAction]
@@ -85,7 +91,6 @@ namespace HelloWorldWeb.Controllers
             }
         }
 
-
         /// <summary>
         /// Get a weather forecast for the day in specified amount of days from now.
         /// </summary>
@@ -108,6 +113,8 @@ namespace HelloWorldWeb.Controllers
         public void Put(int id, [FromBody] string value)
         {
         }
-
     }
+#pragma warning restore CS1570 // XML comment has badly formed XML
+#pragma warning restore SA1101 // Prefix local calls with this
+#pragma warning restore SA1600 // Elements should be documented
 }

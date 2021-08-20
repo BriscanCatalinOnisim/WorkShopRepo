@@ -1,15 +1,22 @@
-﻿using HelloWorldWeb.Data;
+﻿// <copyright file="DbTeamService.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+using HelloWorldWeb.Data;
 using HelloWorldWeb.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+#pragma warning disable SA1600 // Elements should be documented
+
 namespace HelloWorldWeb.Services
 {
     public class DbTeamService : ITeamService
     {
         private readonly ApplicationDbContext context;
+
         public DbTeamService(ApplicationDbContext context)
         {
             this.context = context;
@@ -29,7 +36,7 @@ namespace HelloWorldWeb.Services
         }
 
         public TeamInfo GetTeamInfo()
-        {            
+        {
             var newList = this.context.TeamMembers.ToList();
 
             var teamInfo = new TeamInfo();
@@ -49,4 +56,5 @@ namespace HelloWorldWeb.Services
             throw new NotImplementedException();
         }
     }
+#pragma warning restore SA1600 // Elements should be documented
 }

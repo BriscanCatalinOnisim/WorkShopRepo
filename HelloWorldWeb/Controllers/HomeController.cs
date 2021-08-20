@@ -1,4 +1,8 @@
-﻿using HelloWorldWeb.Models;
+﻿// <copyright file="HomeController.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+using HelloWorldWeb.Models;
 using HelloWorldWeb.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -8,31 +12,34 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
+#pragma warning disable SA1600 // Elements should be documented
+#pragma warning disable SA1101 // Prefix local calls with this
+
 namespace HelloWorldWeb.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<HomeController> logger;
         private readonly ITeamService teamService;
         private readonly ITimeService timeService;
 
         public HomeController(ILogger<HomeController> logger, ITeamService teamService, ITimeService timeService)
         {
-            _logger = logger;
+            this.logger = logger;
             this.teamService = teamService;
             this.timeService = timeService;
         }
 
         [HttpPost]
         public void AddTeamMember(string name)
-        {            
-            teamService.AddTeamMemberAsync(name);
+        {
+            this.teamService.AddTeamMemberAsync(name);
         }
 
         [HttpDelete]
         public void RemoveMember(int id)
         {
-            teamService.RemoveMember(id);
+            this.teamService.RemoveMember(id);
         }
 
         [HttpPost]
@@ -44,11 +51,12 @@ namespace HelloWorldWeb.Controllers
         [HttpGet]
         public int GetCount()
         {
-            return teamService.GetTeamInfo().TeamMembers.Count;
+            return this.teamService.GetTeamInfo().TeamMembers.Count;
         }
+
         public IActionResult Index()
         {
-            return View(teamService.GetTeamInfo());
+            return View(this.teamService.GetTeamInfo());
         }
 
         public IActionResult Privacy()
@@ -62,4 +70,6 @@ namespace HelloWorldWeb.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
+#pragma warning restore SA1101 // Prefix local calls with this
+#pragma warning restore SA1600 // Elements should be documented
 }

@@ -8,6 +8,7 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>C:\Projects\SSHHelloWorld\WorkShopRepo\HelloWorldWeb\HelloWorldWeb.xml</DocumentationFile>
+    <NoWarn>1701;1702;1591;1600;1512;1633</NoWarn>
   </PropertyGroup>
 
  	<ItemGroup>

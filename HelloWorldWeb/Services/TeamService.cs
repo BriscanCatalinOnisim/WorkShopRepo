@@ -1,8 +1,14 @@
-﻿using HelloWorldWeb.Models;
+﻿// <copyright file="TeamService.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+using HelloWorldWeb.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
+#pragma warning disable SA1600 // Elements should be documented
 
 namespace HelloWorldWeb.Services
 {
@@ -19,29 +25,29 @@ namespace HelloWorldWeb.Services
                 TeamMembers = new List<TeamMember>(),
             };
 
-            teamInfo.TeamMembers.Add(new TeamMember("Sorina", timeService));
-            teamInfo.TeamMembers.Add(new TeamMember("Ema", timeService));
-            teamInfo.TeamMembers.Add(new TeamMember("Radu", timeService));
-            teamInfo.TeamMembers.Add(new TeamMember("Patrick", timeService));
-            teamInfo.TeamMembers.Add(new TeamMember("Tudor", timeService));
-            teamInfo.TeamMembers.Add(new TeamMember("Fineas", timeService));
+            this.teamInfo.TeamMembers.Add(new TeamMember("Sorina", this.timeService));
+            this.teamInfo.TeamMembers.Add(new TeamMember("Ema", this.timeService));
+            this.teamInfo.TeamMembers.Add(new TeamMember("Radu", this.timeService));
+            this.teamInfo.TeamMembers.Add(new TeamMember("Patrick", this.timeService));
+            this.teamInfo.TeamMembers.Add(new TeamMember("Tudor", this.timeService));
+            this.teamInfo.TeamMembers.Add(new TeamMember("Fineas", this.timeService));
         }
 
         public TeamInfo GetTeamInfo()
         {
-            return teamInfo;
+            return this.teamInfo;
         }
 
         public int AddTeamMemberAsync(string name)
         {
-            int newId = teamInfo.TeamMembers.Count() + 1;
-            teamInfo.TeamMembers.Add(new TeamMember(newId, name, timeService));
+            int newId = this.teamInfo.TeamMembers.Count() + 1;
+            this.teamInfo.TeamMembers.Add(new TeamMember(newId, name, this.timeService));
             return newId;
         }
 
         public void RemoveMember(int id)
         {
-            teamInfo.TeamMembers.Remove(this.GetTeamMemberById(id));
+            this.teamInfo.TeamMembers.Remove(this.GetTeamMemberById(id));
         }
 
         public TeamMember GetTeamMemberById(int id)
@@ -65,4 +71,5 @@ namespace HelloWorldWeb.Services
             this.GetTeamMemberById(id).Name = name;
         }
     }
+#pragma warning restore SA1600 // Elements should be documented
 }

@@ -2,6 +2,8 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
+#pragma warning disable SA1600 // Elements should be documented
+
 namespace HelloWorldWeb
 {
     using System;
@@ -82,4 +84,5 @@ namespace HelloWorldWeb
             });
         }
     }
+#pragma warning restore SA1600 // Elements should be documented
 }

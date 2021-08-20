@@ -12,7 +12,7 @@ namespace HelloWorldWeb.Services
     public class TeamService : ITeamService
     {
         private readonly TeamInfo teamInfo;
-        private ITimeService timeService;
+        private readonly ITimeService timeService;
         private readonly IHubContext<MessageHub> messageHub;
 
         public TeamService(IHubContext<MessageHub> messageHubContext)

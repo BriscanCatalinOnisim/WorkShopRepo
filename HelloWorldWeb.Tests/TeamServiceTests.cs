@@ -1,5 +1,7 @@
 using HelloWorldWeb.Models;
 using HelloWorldWeb.Services;
+using Microsoft.AspNetCore.SignalR;
+using Moq;
 using System;
 using Xunit;
 
@@ -11,7 +13,9 @@ namespace HelloWorldWeb.Tests
         public void AddTeamMemberToTheTeam()
         {
             // Assume
-            ITeamService teamService = new TeamService();
+            var hubSettings = new Mock<IHubContext<MessageHub>>();
+            var mockClients = new Mock<IHubClients>();
+            ITeamService teamService = new TeamService(hubSettings.Object);
 
             // Act
             teamService.AddTeamMember( "Geo");
@@ -24,7 +28,9 @@ namespace HelloWorldWeb.Tests
         public void DeleteTeamMemberToTheTeam()
         {
             // Assume
-            ITeamService teamService = new TeamService();
+            var hubSettings = new Mock<IHubContext<MessageHub>>();
+            var mockClients = new Mock<IHubClients>();
+            ITeamService teamService = new TeamService(hubSettings.Object);
 
             // Act
             teamService.AddTeamMember("john");
@@ -38,7 +44,10 @@ namespace HelloWorldWeb.Tests
         public void EditTeamMemberInTheTeam()
         {
             //Assume
-            ITeamService teamService = new TeamService();
+            var hubSettings = new Mock<IHubContext<MessageHub>>();
+            var mockClients = new Mock<IHubClients>();
+            ITeamService teamService = new TeamService(hubSettings.Object);
+            
             //Act
             teamService.EditTeamMember(3, "NewName");
             //Assert

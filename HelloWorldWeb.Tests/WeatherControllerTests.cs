@@ -18,7 +18,7 @@ namespace HelloWorldWeb.Tests
         [Fact]
         public void TestCheckingConversion()
         {
-           /* //Assume
+            //Assume
             this.weatherMock = new Mock<IWeatherControllerSettings>();
             var weatherMock = this.weatherMock.Object;
             string content = LoadJsonFromResource();
@@ -32,7 +32,7 @@ namespace HelloWorldWeb.Tests
             var firstDay = result.First();
             Assert.Equal(new DateTime(2021, 8, 12), firstDay.Day);
             Assert.Equal(24.26001f, firstDay.Temperature);
-            Assert.Equal(WeatherType.FewClouds, firstDay.Type);*/
+            Assert.Equal(WeatherType.FewClouds, firstDay.Type); 
         }
 
         private string LoadJsonFromResource()

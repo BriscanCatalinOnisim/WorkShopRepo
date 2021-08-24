@@ -9,6 +9,14 @@ $(document).ready(function () {
         createNewcomer(name, id)
     });
 
+    connection.on("TeamMemberDeleted", function (memberId) {
+        removeTeamMemberFromList(memberId);
+    });
+
+    connection.on('UpdatedTeamMember', function (memberId, name) {
+        updateTeamMemberFromList(memberId, name);
+    })
+
     connection.start().then(function () {
         console.log("signalr connected");
     }).catch(function (err) {
@@ -108,9 +116,9 @@ function createNewcomer(name, id) {
             <span class="pencil fa fa-pencil"></span>
         </li>`);
 }
-/*    $("#clear").click(function () {
-        $("#newcomer").val("");
-    })*/
+$("#clear").click(function () {
+    $("#newcomer").val("");
+})
 
 (function () {
     $('#nameField').on('change textInput input', function () {
@@ -122,3 +130,8 @@ function createNewcomer(name, id) {
         }
     });
 }());
+
+
+const removeTeamMemberFromList = (teamMemberId) => $(`li[data-member-id=${teamMemberId}]`).remove();
+
+const updateTeamMemberFromList = (teamMemberId, teamMemberName) => $(`li[data-member-id=${teamMemberId}]`).children(".name").text(teamMemberName)

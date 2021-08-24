@@ -13,9 +13,9 @@ namespace HelloWorldWeb.Services
     {
         private readonly TeamInfo teamInfo;
         private readonly ITimeService timeService;
-        private readonly IHubContext<MessageHub> messageHub;
+        private readonly IBroadcastService broadcastService;
 
-        public TeamService(IHubContext<MessageHub> messageHubContext)
+        public TeamService(IBroadcastService broadcastService)
         {
             this.teamInfo = new TeamInfo
             {
@@ -23,7 +23,7 @@ namespace HelloWorldWeb.Services
                 TeamMembers = new List<TeamMember>(),
             };
 
-            this.messageHub = messageHubContext;
+            this.broadcastService = broadcastService;
 
             teamInfo.TeamMembers.Add(new TeamMember("Sorina", timeService));
             teamInfo.TeamMembers.Add(new TeamMember("Ema", timeService));
@@ -33,7 +33,7 @@ namespace HelloWorldWeb.Services
             teamInfo.TeamMembers.Add(new TeamMember("Fineas", timeService));
         }
 
-        public TeamInfo GetTeamInfo()
+        public TeamInfo GetTeamInfo() 
         {
             return teamInfo;
         }
@@ -42,14 +42,17 @@ namespace HelloWorldWeb.Services
         {
             int newId = teamInfo.TeamMembers.Count() + 1;
             teamInfo.TeamMembers.Add(new TeamMember(newId, name, timeService));
-            messageHub.Clients.All.SendAsync("NewTeamMemberAdded", name, newId );
+            this.broadcastService.NewTeamMemberAdded(name, newId);
             return newId;
         }
 
-        public void RemoveMember(int id)
+        public void RemoveMember(int memberId)
         {
-            teamInfo.TeamMembers.Remove(this.GetTeamMemberById(id));
+            TeamMember member = GetTeamMemberById(memberId);
+            teamInfo.TeamMembers.Remove(member);
+            this.broadcastService.TeamMemberDeleted(memberId);
         }
+
 
         public TeamMember GetTeamMemberById(int id)
         {
@@ -69,7 +72,9 @@ namespace HelloWorldWeb.Services
 
         public void EditTeamMember(int id, string name)
         {
-            this.GetTeamMemberById(id).Name = name;
+            TeamMember member = GetTeamMemberById(id);
+            member.Name = name;
+            broadcastService.UpdatedTeamMember(id, name);
         }
     }
 }

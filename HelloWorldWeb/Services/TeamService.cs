@@ -29,12 +29,12 @@ namespace HelloWorldWeb.Services
 
             this.broadcastService = broadcastService;
 
-            teamInfo.TeamMembers.Add(new TeamMember("Sorina", timeService));
-            teamInfo.TeamMembers.Add(new TeamMember("Ema", timeService));
-            teamInfo.TeamMembers.Add(new TeamMember("Radu", timeService));
-            teamInfo.TeamMembers.Add(new TeamMember("Patrick", timeService));
-            teamInfo.TeamMembers.Add(new TeamMember("Tudor", timeService));
-            teamInfo.TeamMembers.Add(new TeamMember("Fineas", timeService));
+            this.teamInfo.TeamMembers.Add(new TeamMember("Sorina", this.timeService));
+            this.teamInfo.TeamMembers.Add(new TeamMember("Ema", this.timeService));
+            this.teamInfo.TeamMembers.Add(new TeamMember("Radu", this.timeService));
+            this.teamInfo.TeamMembers.Add(new TeamMember("Patrick", this.timeService));
+            this.teamInfo.TeamMembers.Add(new TeamMember("Tudor", this.timeService));
+            this.teamInfo.TeamMembers.Add(new TeamMember("Fineas", this.timeService));
         }
 
         public TeamInfo GetTeamInfo() 
@@ -44,41 +44,30 @@ namespace HelloWorldWeb.Services
 
         public int AddTeamMemberAsync(string name)
         {
-            int newId = teamInfo.TeamMembers.Count() + 1;
-            teamInfo.TeamMembers.Add(new TeamMember(newId, name, timeService));
+            int newId = this.teamInfo.TeamMembers.Count() + 1;
+            this.teamInfo.TeamMembers.Add(new TeamMember(newId, name, this.timeService));
             this.broadcastService.NewTeamMemberAdded(name, newId);
             return newId;
         }
 
         public void RemoveMember(int memberId)
         {
-            TeamMember member = GetTeamMemberById(memberId);
-            teamInfo.TeamMembers.Remove(member);
+            TeamMember member = this.GetTeamMemberById(memberId);
+            this.teamInfo.TeamMembers.Remove(member);
             this.broadcastService.TeamMemberDeleted(memberId);
         }
 
 
         public TeamMember GetTeamMemberById(int id)
         {
-            // foreach (TeamMember member in this.teamInfo.TeamMembers)
-            // {
-            //    if (member.Id == id)
-            //    {
-            //        return member;
-            //    }
-
-            // }
-
-            // return null;
-            Console.WriteLine(id);
             return this.teamInfo.TeamMembers.Find(x => x.Id == id);
         }
 
         public void EditTeamMember(int id, string name)
         {
-            TeamMember member = GetTeamMemberById(id);
+            TeamMember member = this.GetTeamMemberById(id);
             member.Name = name;
-            broadcastService.UpdatedTeamMember(id, name);
+            this.broadcastService.UpdatedTeamMember(id, name);
         }
     }
 #pragma warning restore SA1600 // Elements should be documented

@@ -16,23 +16,33 @@ namespace HelloWorldWeb.Services
     public class DbTeamService : ITeamService
     {
         private readonly ApplicationDbContext context;
+        private readonly IBroadcastService broadcastService;
 
-        public DbTeamService(ApplicationDbContext context)
+        public DbTeamService(ApplicationDbContext context, IBroadcastService broadcastService)
         {
             this.context = context;
+            this.broadcastService = broadcastService;
         }
 
         public int AddTeamMemberAsync(string name)
         {
             TeamMember teamMember = new TeamMember(name);
-            this.context.Add(name);
+            List<TeamMember> teamService = this.context.TeamMembers.ToList();
+            int index = teamService[teamService.Count - 1].Id + 1;
+            teamMember.Id = index;
+            this.context.Add(teamMember);
             this.context.SaveChanges();
+            this.broadcastService.NewTeamMemberAdded(name, teamMember.Id);
             return teamMember.Id;
         }
 
         public void EditTeamMember(int id, string name)
         {
-            throw new NotImplementedException();
+            var member = this.context.TeamMembers.ToList().Find(x => x.Id == id);
+            member.Name = name;
+            this.context.Update(member);
+            this.context.SaveChanges();
+            this.broadcastService.UpdatedTeamMember(id, name);
         }
 
         public TeamInfo GetTeamInfo()
@@ -48,12 +58,15 @@ namespace HelloWorldWeb.Services
 
         public TeamMember GetTeamMemberById(int id)
         {
-            throw new NotImplementedException();
+            return this.context.TeamMembers.ToList().Find(x => x.Id == id);
         }
 
         public void RemoveMember(int memberIndex)
         {
-            throw new NotImplementedException();
+            TeamMember member = this.GetTeamMemberById(memberIndex);
+            this.context.TeamMembers.Remove(member);
+            this.context.SaveChanges();
+            this.broadcastService.TeamMemberDeleted(member.Id);
         }
     }
 #pragma warning restore SA1600 // Elements should be documented

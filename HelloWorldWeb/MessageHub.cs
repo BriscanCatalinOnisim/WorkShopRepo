@@ -8,7 +8,7 @@ namespace HelloWorldWeb
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public async Task SendMessage(string user, string message) => await Clients.All.SendAsync("ReceiveMessage", user, message);
+        public async Task SendMessage(string user, string message) => await this.Clients.All.SendAsync("ReceiveMessage", user, message);
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

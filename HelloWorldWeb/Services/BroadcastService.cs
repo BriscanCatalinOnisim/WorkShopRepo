@@ -17,16 +17,16 @@ namespace HelloWorldWeb.Services
         }
         public void NewTeamMemberAdded(string name, int newId)
         {
-            messageHub.Clients.All.SendAsync("NewTeamMemberAdded", name, newId);
+            this.messageHub.Clients.All.SendAsync("NewTeamMemberAdded", name, newId);
         }
         public void TeamMemberDeleted(int memberId)
         {
-            messageHub.Clients.All.SendAsync("TeamMemberDeleted", memberId);
+            this.messageHub.Clients.All.SendAsync("TeamMemberDeleted", memberId);
         }
 
         public void UpdatedTeamMember(int memberId, string name)
         {
-            messageHub.Clients.All.SendAsync("UpdatedTeamMember", memberId, name);
+            this.messageHub.Clients.All.SendAsync("UpdatedTeamMember", memberId, name);
         }
     }
 

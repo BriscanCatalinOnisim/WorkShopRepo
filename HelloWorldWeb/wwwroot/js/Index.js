@@ -10,11 +10,11 @@ $(document).ready(function () {
     });
 
     connection.on("TeamMemberDeleted", function (memberId) {
-        removeTeamMemberFromList(memberId);
+        onMemberDelete(memberId);
     });
 
     connection.on('UpdatedTeamMember', function (memberId, name) {
-        updateTeamMemberFromList(memberId, name);
+        onMemberEdit(memberId, name);
     })
 
     connection.start().then(function () {
@@ -33,20 +33,9 @@ $(document).ready(function () {
                 "name": newcomerName
             },
             success: (result) => {
-                console.log(result);
-                $("#teamList").append(
-                    `<li>
-                <span class="memberName">
-                        ${newcomerName}
-                    </span >
-                <span class="delete fa fa-remove" onclick="deleteMember(${result})">
-                    </span>
-                <span class="pencil fa fa-pencil">
-                    </span>
-                </li>`);
+                console.log(result);                
                 $("#nameField").val("");
                 document.getElementById("createButton").disabled = true;
-                //location.reload();
             },
             error: function (err) {
                 console.log(err);
@@ -81,7 +70,6 @@ $(document).ready(function () {
             },
             success: function (result) {
                 console.log('successfully renamed : ${id}');
-                location.reload();
             }
         })
     })
@@ -102,7 +90,6 @@ function deleteMember(id) {
         },
         success: function (result) {
             console.log("deleete:" + id);
-            location.reload();
         }
     })
 }
@@ -116,9 +103,10 @@ function createNewcomer(name, id) {
             <span class="pencil fa fa-pencil"></span>
         </li>`);
 }
-$("#clear").click(function () {
+
+/*$("#clear").click(function () {
     $("#newcomer").val("");
-})
+})*/
 
 (function () {
     $('#nameField').on('change textInput input', function () {
@@ -131,7 +119,16 @@ $("#clear").click(function () {
     });
 }());
 
+function onMemberDelete(id) {
+    $(`li[data-member-id=${id}]`).remove();
+}
 
+function onMemberEdit(id, name) {
+    $(`li[data-member-id=${id}]`).find(".memberName").text(name);
+}
+
+/*
 const removeTeamMemberFromList = (teamMemberId) => $(`li[data-member-id=${teamMemberId}]`).remove();
 
-const updateTeamMemberFromList = (teamMemberId, teamMemberName) => $(`li[data-member-id=${teamMemberId}]`).children(".name").text(teamMemberName)
+const updateTeamMemberFromList = (teamMemberId, teamMemberName) => $(`li[data-member-id=${teamMemberId}]`).children(".name").text(teamMemberName)*/
+

@@ -33,14 +33,13 @@ namespace HelloWorldWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(
                     this.Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddScoped<ITeamService, DbTeamService>();
             services.AddControllersWithViews();
             services.AddSingleton<IWeatherControllerSettings, WeatherControllerSettings>();
-            services.AddSingleton<ITeamService, TeamService>();
             services.AddSingleton<ITimeService, TimeService>();
             services.AddSingleton<IBroadcastService, BroadcastService>();
 

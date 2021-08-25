@@ -15,7 +15,7 @@ namespace HelloWorldWeb.Data
         }
         public DbSet<HelloWorldWeb.Models.Skill> Skill { get; set; }
 
-        public DbSet<HelloWorldWeb.Models.TeamMember> Member { get; set; }
+        public DbSet<HelloWorldWeb.Models.TeamMember> TeamMembers { get; set; }
     }
 }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member

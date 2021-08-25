@@ -35,11 +35,12 @@ namespace HelloWorldWeb.Tests
             ITeamService teamService = new TeamService(broadcastService);
 
             // Act
-            teamService.AddTeamMemberAsync("john");
+            TeamMember teamMember = new TeamMember("Dora");
+            teamService.AddTeamMemberAsync(teamMember.Name);
             teamService.RemoveMember(4);
 
             // Assert
-            Assert.Equal(7, teamService.GetTeamInfo().TeamMembers.Count);
+            Assert.Equal(6, teamService.GetTeamInfo().TeamMembers.Count);
         }
 
         [Fact]
@@ -55,8 +56,7 @@ namespace HelloWorldWeb.Tests
 
             //Assert
             Assert.Equal("NewName", teamService.GetTeamInfo().TeamMembers[3].Name);
-
-
+            Assert.Equal(6, teamService.GetTeamInfo().TeamMembers.Count);
         }
 
 

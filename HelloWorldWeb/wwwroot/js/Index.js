@@ -62,7 +62,7 @@ $(document).ready(function () {
     $("#teamList").on("click", ".pencil", function () {
         var targetMemberTag = $(this).closest('li');
         var id = targetMemberTag.attr('data-member-id');
-        var currentName = targetMemberTag.find(".memberName").text();
+        var currentName = targetMemberTag.find(".memberName").text().trim();
         $('#editClassmate').attr("data-member-id", id);
         $('#classmateName').val(currentName);
         $('#editClassmate').modal('show');

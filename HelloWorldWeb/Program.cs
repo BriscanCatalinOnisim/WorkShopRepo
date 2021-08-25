@@ -1,3 +1,7 @@
+// <copyright file="Program.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -7,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-#pragma warning disable 1591
+#pragma warning disable SA1600 // Elements should be documented
 
 namespace HelloWorldWeb
 {
@@ -19,12 +23,13 @@ namespace HelloWorldWeb
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-            .ConfigureWebHostDefaults(webBuilder =>
-            {
-                var port = Environment.GetEnvironmentVariable("PORT");
-                webBuilder.UseStartup<Startup>()
-                .UseUrls("http://*:" + port);
-            });
-    }
+                Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    var port = Environment.GetEnvironmentVariable("PORT");
+                    webBuilder.UseStartup<Startup>()
+                    .UseUrls("http://*:" + port);
+                });
+        }
+#pragma warning restore SA1600 // Elements should be documented
 }

@@ -1,11 +1,15 @@
-﻿using HelloWorldWeb.Models;
+﻿// <copyright file="TeamService.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+using HelloWorldWeb.Models;
 using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-#pragma warning disable 1591
+#pragma warning disable SA1600 // Elements should be documented
 
 namespace HelloWorldWeb.Services
 {
@@ -35,10 +39,10 @@ namespace HelloWorldWeb.Services
 
         public TeamInfo GetTeamInfo() 
         {
-            return teamInfo;
+            return this.teamInfo;
         }
 
-        public int AddTeamMember(string name)
+        public int AddTeamMemberAsync(string name)
         {
             int newId = teamInfo.TeamMembers.Count() + 1;
             teamInfo.TeamMembers.Add(new TeamMember(newId, name, timeService));
@@ -77,4 +81,5 @@ namespace HelloWorldWeb.Services
             broadcastService.UpdatedTeamMember(id, name);
         }
     }
+#pragma warning restore SA1600 // Elements should be documented
 }

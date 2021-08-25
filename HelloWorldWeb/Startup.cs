@@ -17,7 +17,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-#pragma warning disable 1591
+#pragma warning disable SA1600 // Elements should be documented
 
 namespace HelloWorldWeb
 {
@@ -42,9 +42,6 @@ namespace HelloWorldWeb
             services.AddSingleton<IWeatherControllerSettings, WeatherControllerSettings>();
             services.AddSingleton<ITimeService, TimeService>();
             services.AddSingleton<IBroadcastService, BroadcastService>();
-
-            // services.AddSingleton(typeof(ITeamService), typeof(TeamService));
-            services.AddControllersWithViews();
             services.AddSingleton<IWeatherControllerSettings, WeatherControllerSettings>();
             services.AddSwaggerGen(c =>
             {
@@ -55,6 +52,8 @@ namespace HelloWorldWeb
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
             });
+
+            services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                     .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddSignalR();
@@ -70,6 +69,7 @@ namespace HelloWorldWeb
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPI v1"));
 
                 app.UseDeveloperExceptionPage();
+                app.UseMigrationsEndPoint();
             }
             else
             {
@@ -84,6 +84,7 @@ namespace HelloWorldWeb
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

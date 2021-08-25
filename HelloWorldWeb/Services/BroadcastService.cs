@@ -1,9 +1,13 @@
-﻿using Microsoft.AspNetCore.SignalR;
+﻿// <copyright file="BroadcastService.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable SA1600 // Elements should be documented
 
 namespace HelloWorldWeb.Services
 {
@@ -15,10 +19,12 @@ namespace HelloWorldWeb.Services
         {
             this.messageHub = messageHub;
         }
+
         public void NewTeamMemberAdded(string name, int newId)
         {
             this.messageHub.Clients.All.SendAsync("NewTeamMemberAdded", name, newId);
         }
+
         public void TeamMemberDeleted(int memberId)
         {
             this.messageHub.Clients.All.SendAsync("TeamMemberDeleted", memberId);
@@ -30,5 +36,5 @@ namespace HelloWorldWeb.Services
         }
     }
 
-#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning restore SA1600 // Elements should be documented
 }

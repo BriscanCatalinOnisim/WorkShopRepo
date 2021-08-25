@@ -74,7 +74,6 @@ namespace HelloWorldWeb.Controllers
         {
             return View();
         }
-
     }
 #pragma warning restore SA1101 // Prefix local calls with this
 #pragma warning restore SA1600 // Elements should be documented

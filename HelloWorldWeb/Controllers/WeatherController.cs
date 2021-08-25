@@ -99,7 +99,7 @@ namespace HelloWorldWeb.Controllers
         [HttpGet("{index}")]
         public DailyWeather Get(int index)
         {
-            return Get().ElementAt(index) ;
+            return Get().ElementAt(index);
         }
 
         // POST api/<WeatherController>

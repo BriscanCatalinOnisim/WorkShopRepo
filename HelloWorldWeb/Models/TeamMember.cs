@@ -31,6 +31,7 @@ namespace HelloWorldWeb.Models
         public TeamMember()
         {
         }
+
         public TeamMember(int id, string name, ITimeService timeService)
         {
             this.Name = name;

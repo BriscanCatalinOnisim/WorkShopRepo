@@ -1,6 +1,13 @@
-﻿using System;
+﻿// <copyright file="20210825152207_AllMigrations.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+
+#pragma warning disable SA1601 // Partial elements should be documented
+#pragma warning disable SA1600 // Elements should be documented
 
 namespace HelloWorldWeb.Migrations
 {
@@ -15,7 +22,7 @@ namespace HelloWorldWeb.Migrations
                     Id = table.Column<string>(type: "text", nullable: false),
                     Name = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "text", nullable: true)
+                    ConcurrencyStamp = table.Column<string>(type: "text", nullable: true),
                 },
                 constraints: table =>
                 {
@@ -40,7 +47,7 @@ namespace HelloWorldWeb.Migrations
                     TwoFactorEnabled = table.Column<bool>(type: "boolean", nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
                     LockoutEnabled = table.Column<bool>(type: "boolean", nullable: false),
-                    AccessFailedCount = table.Column<int>(type: "integer", nullable: false)
+                    AccessFailedCount = table.Column<int>(type: "integer", nullable: false),
                 },
                 constraints: table =>
                 {
@@ -54,7 +61,7 @@ namespace HelloWorldWeb.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: true),
-                    SkillUrl = table.Column<string>(type: "text", nullable: true)
+                    SkillUrl = table.Column<string>(type: "text", nullable: true),
                 },
                 constraints: table =>
                 {
@@ -68,7 +75,7 @@ namespace HelloWorldWeb.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: true),
-                    Birthdate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
+                    Birthdate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                 },
                 constraints: table =>
                 {
@@ -83,7 +90,7 @@ namespace HelloWorldWeb.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     RoleId = table.Column<string>(type: "text", nullable: false),
                     ClaimType = table.Column<string>(type: "text", nullable: true),
-                    ClaimValue = table.Column<string>(type: "text", nullable: true)
+                    ClaimValue = table.Column<string>(type: "text", nullable: true),
                 },
                 constraints: table =>
                 {
@@ -104,7 +111,7 @@ namespace HelloWorldWeb.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     UserId = table.Column<string>(type: "text", nullable: false),
                     ClaimType = table.Column<string>(type: "text", nullable: true),
-                    ClaimValue = table.Column<string>(type: "text", nullable: true)
+                    ClaimValue = table.Column<string>(type: "text", nullable: true),
                 },
                 constraints: table =>
                 {
@@ -124,7 +131,7 @@ namespace HelloWorldWeb.Migrations
                     LoginProvider = table.Column<string>(type: "character varying(128)", maxLength: 128, nullable: false),
                     ProviderKey = table.Column<string>(type: "character varying(128)", maxLength: 128, nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "text", nullable: true),
-                    UserId = table.Column<string>(type: "text", nullable: false)
+                    UserId = table.Column<string>(type: "text", nullable: false),
                 },
                 constraints: table =>
                 {
@@ -142,7 +149,7 @@ namespace HelloWorldWeb.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "text", nullable: false),
-                    RoleId = table.Column<string>(type: "text", nullable: false)
+                    RoleId = table.Column<string>(type: "text", nullable: false),
                 },
                 constraints: table =>
                 {
@@ -168,7 +175,7 @@ namespace HelloWorldWeb.Migrations
                     UserId = table.Column<string>(type: "text", nullable: false),
                     LoginProvider = table.Column<string>(type: "character varying(128)", maxLength: 128, nullable: false),
                     Name = table.Column<string>(type: "character varying(128)", maxLength: 128, nullable: false),
-                    Value = table.Column<string>(type: "text", nullable: true)
+                    Value = table.Column<string>(type: "text", nullable: true),
                 },
                 constraints: table =>
                 {
@@ -249,4 +256,6 @@ namespace HelloWorldWeb.Migrations
                 name: "AspNetUsers");
         }
     }
+#pragma warning restore SA1600 // Elements should be documented
+#pragma warning restore SA1601 // Partial elements should be documented
 }

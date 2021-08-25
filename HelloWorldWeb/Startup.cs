@@ -1,3 +1,7 @@
+// <copyright file="Startup.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
 using HelloWorldWeb.Controllers;
 using HelloWorldWeb.Data;
 using HelloWorldWeb.Services;
@@ -57,7 +61,6 @@ namespace HelloWorldWeb
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                     .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddSignalR();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -37,7 +37,7 @@ namespace HelloWorldWeb.Services
             this.teamInfo.TeamMembers.Add(new TeamMember("Fineas", this.timeService));
         }
 
-        public TeamInfo GetTeamInfo() 
+        public TeamInfo GetTeamInfo()
         {
             return this.teamInfo;
         }
@@ -56,7 +56,6 @@ namespace HelloWorldWeb.Services
             this.teamInfo.TeamMembers.Remove(member);
             this.broadcastService.TeamMemberDeleted(memberId);
         }
-
 
         public TeamMember GetTeamMemberById(int id)
         {

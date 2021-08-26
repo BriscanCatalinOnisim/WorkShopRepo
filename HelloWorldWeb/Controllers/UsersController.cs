@@ -29,6 +29,7 @@ namespace HelloWorldWeb.Controllers
         // GET: Users
         public async Task<IActionResult> Index()
         {
+            this.ViewData["Administrators"] = await this.userManager.GetUsersInRoleAsync("Administrators");
             return this.View(await this.userManager.Users.ToListAsync());
         }
 

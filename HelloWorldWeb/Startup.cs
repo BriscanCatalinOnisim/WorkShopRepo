@@ -62,6 +62,8 @@ namespace HelloWorldWeb
                    .AddRoles<IdentityRole>()
                    .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddSignalR();
+
+            this.AssignRoleProgramaticaly(services.BuildServiceProvider());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -99,6 +101,13 @@ namespace HelloWorldWeb
                 endpoints.MapRazorPages();
                 endpoints.MapHub<MessageHub>("/messagehub");
             });
+        }
+
+        private async void AssignRoleProgramaticaly(IServiceProvider services)
+        {
+            var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
+            var user = await userManager.FindByNameAsync("catalin.briscan@principal33.com");
+            await userManager.AddToRoleAsync(user, "Administrators");
         }
     }
 #pragma warning restore SA1600 // Elements should be documented

@@ -4,6 +4,7 @@
 
 using HelloWorldWeb.Models;
 using HelloWorldWeb.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -31,18 +32,21 @@ namespace HelloWorldWeb.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public void AddTeamMember(string name)
         {
             this.teamService.AddTeamMemberAsync(name);
         }
 
         [HttpDelete]
+        [Authorize]
         public void RemoveMember(int id)
         {
             this.teamService.RemoveMember(id);
         }
 
         [HttpPost]
+        [Authorize]
         public void RenameMember(int id, string name)
         {
             this.teamService.EditTeamMember(id, name);

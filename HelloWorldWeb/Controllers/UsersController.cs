@@ -36,14 +36,14 @@ namespace HelloWorldWeb.Controllers
         {
             var user = await this.userManager.FindByIdAsync(id);
             await this.userManager.AddToRoleAsync(user, "Administrators");
-            return this.View("Index", await this.userManager.Users.ToListAsync());
+            return this.RedirectToAction(nameof(this.Index));
         }
 
         public async Task<ActionResult> AssignUsualRole(string id)
         {
             var user = await this.userManager.FindByIdAsync(id);
             await this.userManager.RemoveFromRoleAsync(user, "Administrators");
-            return this.View("Index", await this.userManager.Users.ToListAsync());
+            return this.RedirectToAction(nameof(this.Index));
         }
 
         /*  // GET: Users/Details/5

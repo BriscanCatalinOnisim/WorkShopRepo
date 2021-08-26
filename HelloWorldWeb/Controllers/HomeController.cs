@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 
 namespace HelloWorldWeb.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> logger;

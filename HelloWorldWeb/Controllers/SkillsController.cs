@@ -11,11 +11,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HelloWorldWeb.Data;
 using HelloWorldWeb.Models;
+using Microsoft.AspNetCore.Authorization;
 
 #pragma warning disable SA1600 // Elements should be documented
 
 namespace HelloWorldWeb.Controllers
 {
+    [Authorize(Roles = "Administrators")]
     public class SkillsController : Controller
     {
         private readonly ApplicationDbContext context;

@@ -9,7 +9,7 @@ Heroku deplyed app: https://app-helloworld-catalin.herokuapp.com/
 1.Build container
 
 ```
-docker build -t app-helloworld-catalin
+docker build -t app-helloworld-catalin .
 ```
 
 2. Create and run docker container

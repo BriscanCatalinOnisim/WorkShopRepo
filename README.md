@@ -1,6 +1,8 @@
 # Hello World
 This is a hello world project.
 
+Heroku deplyed app: https://app-helloworld-catalin.herokuapp.com/
+
 ## How to run / deploy
 ### Locally (via Docker)
 

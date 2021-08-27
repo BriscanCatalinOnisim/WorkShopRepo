@@ -1,21 +1,33 @@
-# My first line
-Sample text here
-We are going to use entity framework
-Modified Read me with EF core
+# Hello World
+This is a hello world project.
+
+## How to run / deploy
+### Locally (via Docker)
+
+1.Build container
+
+```
+docker build -t app-helloworld-catalin
+```
+
+2. Create and run docker container
+```
+docker run -d -p 8081:80 --name app-helloworld-catalin-container app-helloworld-catalin
+```
 
 ## How to deploy to heroku 
-Login to heroku
+1.Login to heroku
 ```
 heroku login
 heroku container:login
 ```
 
-Push container
+2.Push container
 ```
 heroku container:push -a app-helloworld-catalin web
 ```
 
-Release the container
+3.Release the container
 ```
 heroku container:release -a app-helloworld-catalin web
 ```
